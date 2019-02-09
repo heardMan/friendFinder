@@ -177,10 +177,11 @@
 
             function getMatch() {
 
-                $.get("/api/friends", function (data) {
-                    console.log(data);
+                $.get("/api/friends", function (response) {
+                    console.log(response);
+                    var data = response.friends;
                     var differences = [];
-                    data.friends.forEach(friend => {
+                    data.forEach(friend => {
                         var totalDifference = 0;
                         var friendScores = friend.scores;
                         friendScores.forEach(score => {
