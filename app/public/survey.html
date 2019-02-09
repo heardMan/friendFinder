@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mainContent">
+        <div id="title" class="row">
+            <div class="col s12 center-align">
+                <h3>Find Your Next Best Friend</h3>
+            </div>
+        </div>
+        <div id="basicInfo" class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Name" id="user_name" type="text" class="validate">
+                            <label class="active" for="user_name">Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Photo" id="user_img" type="text" class="validate">
+                            <label class="active" for="user_img">Photo</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel">
+                    <div id="questions" class="row"></div>
+                    <div id="surveyActions" class="row">
+                        <div class="col s12 center-align">
+                            <a id="findANewFriend" class="waves-effect waves-light btn-large btn"><i class="material-icons left">cloud</i>button</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h4 id="modalTitle"></h4>
+            <p id="modalContent"></p>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Whatever</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+
+        function createQuestion(id, text) {
+            var question = `<div class="input-field col s12">
+                                <div>${text}</div>
+                                <select id="userInput${id}" class="select" >
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3">4</option>
+                                    <option value="3">5</option>
+                                </select>
+                                <label>Question ${id}</label>
+                                
+                            </div>`;
+            $(`#questions`).append(question);
+
+        }
+        var questions = [
+            `Your mind is always buzzing with unexplored ideas and plans.`,
+            `Generally speaking, you rely more on your experience than your imagination.`,
+            `You find it easy to stay relaxed and focused even when there is some pressure.`,
+            `You rarely do something just out of sheer curiosity.`,
+            `People can rarely upset you.`,
+            `It is often difficult for you to relate to other people’s feelings.`,
+            `In a discussion, truth should be more important than people’s sensitivities.`,
+            `You rarely get carried away by fantasies and ideas.`,
+            `You think that everyone’s views should be respected regardless of whether they are supported by facts or not.`,
+            `You feel more energetic after spending time with a group of people.`,
+        ];
+        function renderQuestions() {
+
+
+            questions.forEach(question => {
+                var id = questions.indexOf(question) + 1;
+                createQuestion(id, question);
+
+            });
+
+        }
+        renderQuestions();
+
+        function Friend(name, image, scores) {
+            this.name = name;
+            this.image = image;
+            this.scores = scores;
+        }
+
+        $(`#findANewFriend`).click(function (e) {
+            //e.preventDefault();
+            var name = $(`#user_name`).val().trim();
+            var photo = $(`#user_img`).val().trim();
+            var scores = [];
+            questions.forEach(question => {
+                var id = questions.indexOf(question) + 1;
+                var score = $(`#userInput${id} option:selected`).text();
+                console.log(score);
+                scores.push(score);
+            });
+
+            console.log(name);
+            var invalidOption = scores.indexOf("Choose your option");
+
+            if (name === "" || photo === "" || invalidOption > -1) {
+                console.log("u cant do that!!!");
+                console.log(name);
+                console.log(photo);
+                console.log(invalidOption);
+
+                function error() {
+                        var title = `<div class="row">
+                                <div class="col s12">
+                                    <h4>Error</h4>
+                                </div>
+                            </div>`;
+                        var matchInfo = `<div class="row">
+                                    <div clss="col s12">
+                                        <h3>All questions must be answered</h3>
+                                       
+                                    </div>
+                                </div>`;
+                        $("#modalTitle").html(title);
+                        $("#modalContent").html(matchInfo);
+
+                        $('.modal').modal('open');
+                    }
+                    error();
+
+            } else {
+                var newFriend = {
+                    "name": name,
+                    "photo": photo,
+                    "scores": scores
+                };
+                getMatch();
+                postNewFriend(name, photo, scores);
+            }
+
+            function postNewFriend(newFriend) {
+               
+                $.post("/api/friends", newFriend);
+            }
+
+            function getMatch() {
+
+                $.get("/api/friends", function (data) {
+                    console.log(data);
+                    var differences = [];
+                    data.friends.forEach(friend => {
+                        var totalDifference = 0;
+                        var friendScores = friend.scores;
+                        friendScores.forEach(score => {
+                            var index = friendScores.indexOf(score);
+                            var score = Number(score);
+                            var userScore = Number(newFriend.scores[index]);
+                            var difference = Math.abs(userScore - score);
+                            //console.log(difference);
+                            totalDifference += difference;
+                        });
+                        console.log(totalDifference);
+                        differences.push({ "name": friend.name, "photo": friend.photo, "difference": totalDifference });
+                    });
+                    console.log(differences);
+                    var match = 51;
+                    var matchName, matchPhoto;
+                    differences.forEach(user => {
+                        var difference = user.difference;
+                        var closerMatch = Math.min(match, difference);
+                        if (match > difference) {
+                            match = closerMatch;
+                            matchName = user.name;
+                            matchPhoto = user.photo;
+                        }
+                        //match = closerMatch;
+                    });
+                    console.log(match);
+                    console.log(matchName);
+
+                    function success(name, photo) {
+                        var title = `<div class="row">
+                                <div class="col s12">
+                                    <h4>Best Match</h4>
+                                </div>
+                            </div>`;
+                        var matchInfo = `<div class="row">
+                                    <div clss="col s12">
+                                        <h3>${name}</h3>
+                                        <img src="${photo}">
+                                    </div>
+                                </div>`;
+                        $("#modalTitle").html(title);
+                        $("#modalContent").html(matchInfo);
+
+                        $('.modal').modal('open');
+                    }
+                    success(matchName, matchPhoto);
+
+                });
+
+            }
+
+
+
+        });
+        M.AutoInit();
+    </script>
+</body>
+
+</html>
