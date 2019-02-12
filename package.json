@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "materialize-css": "^1.0.0-rc.2",
+    "mime-types": "^2.1.21",
     "path": "^0.12.7"
   },
   "devDependencies": {}
