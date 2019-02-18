@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://secure-anchorage-83716.herokuapp.com/api/main/css">
+    <!-- <link rel="stylesheet" href="https://secure-anchorage-83716.herokuapp.com/api/main/css"> -->
+    <link rel="stylesheet" href="../css/style.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat+Subrayada" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat+Subrayada|Megrim" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
@@ -19,7 +21,8 @@
         <div class="row">
             
             <div class="col s8 offset-s2">
-              <div id="homeCard" class="card-panel center-align">
+              <div id="homeCardBG" class="card-panel center-align">
+                  <div id="homeCard" class="card">
                 <div id="homeTitle" class="row">
                     <div class="col s12"><h3 id="home-title">Perfect Match</h3></div>
                     <div class="col s12">
@@ -28,11 +31,12 @@
                     </div>
                 </div>
                 <div id="homeContent" class="row">
-                    <div class="col s12">Answer a few basic questions and meet compatible friends near you!</div>
+                    <div class="col s12 white-text">Answer a few basic questions and meet compatible friends near you!</div>
                 </div>
                 <div id="homeActions" class="row">
-                    <a href="https://secure-anchorage-83716.herokuapp.com/survey" id="findFriends" class="waves-effect waves-light btn">Find Friends</a>
+                    <a href="https://secure-anchorage-83716.herokuapp.com/survey" id="findFriends" class="waves-effect waves-light btn orange darken-2">Find Friends</a>
                 </div>
+            </div>
               </div>
             </div>
           </div>

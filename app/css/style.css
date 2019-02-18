@@ -1,6 +1,7 @@
 body{
     font-family: 'Lato', sans-serif;
-    background-color: #6c7a89;
+    background-color: #ececec;
+    
 }
 #logo {
     max-height: 250px;
@@ -8,8 +9,87 @@ body{
 }
 #home-title {
     font-family: 'Montserrat Subrayada', sans-serif;
+    color: #ffffff;
+}
+
+#survey-title {
+    font-family: 'Montserrat Subrayada', sans-serif;
+    color: #ffffff;
+    background-image: linear-gradient(to top right, #d91e18, #f5e51b);
 }
 
 #homeCard{
-    background-image: linear-gradient( #d91e18 , #f5e51b);
+    background-color: #2e3131;
 }
+
+#homeCardBG{
+    background-image: linear-gradient(to top right, #d91e18, #f5e51b);
+    animation: flikr 2s infinite;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 3px;
+    padding-left: 3px;
+    
+}
+
+#findFriends{
+    animation: flikr 2s infinite;
+    margin-bottom: 1em;
+}
+#findANewFriend{
+    background-image: linear-gradient(to top, #d91e18, #f5e51b);
+    animation: flikr 2s infinite;
+}
+
+#findANewFriendIcon:hover {
+    
+    animation: pulse 2s infinite; 
+}
+
+@keyframes flikr {
+    0% {background-image: linear-gradient(to top right, #d91e18 40%, #f89406, #f5e51b);}
+    5% {background-image: linear-gradient(to top , #d91e18,#f89406, #f5e51b);}
+    10% {background-image: linear-gradient(to top left, #d91e18 30%,#f89406, #f5e51b);}
+    15% {background-image: linear-gradient(to top , #d91e18 30%,#f89406, #f5e51b);}
+    20% {background-image: linear-gradient(to top left, #d91e18 30%,#f89406, #f5e51b);}
+    25% {background-image: linear-gradient(to top , #d91e18 10,#f89406, #f5e51b);}
+    30% {background-image: linear-gradient(to top right, #d91e18 30%,#f89406, #f5e51b);}
+    35% {background-image: linear-gradient(to top , #d91e18 30%,#f89406, #f5e51b);}
+    40% {background-image: linear-gradient(to top right, #d91e18 30%,#f89406, #f5e51b);}
+    45% {background-image: linear-gradient(to top , #d91e18 10%,#f89406, #f5e51b);}
+    50% {background-image: linear-gradient(to top left, #d91e18 30%,#f89406, #f5e51b);}
+    55% {background-image: linear-gradient(to top , #d91e18 30%,#f89406, #f5e51b);}
+    60% {background-image: linear-gradient(to top right, #d91e18 10%,#f89406, #f5e51b);}
+    65% {background-image: linear-gradient(to top , #d91e18 30%,#f89406, #f5e51b);}
+    70% {background-image: linear-gradient(to top right, #d91e18 30%,#f89406, #f5e51b);}
+    75% {background-image: linear-gradient(to top , #d91e18 40%,#f89406, #f5e51b);}
+    80% {background-image: linear-gradient(to top left, #d91e18 30%,#f89406, #f5e51b);}
+    85% {background-image: linear-gradient(to top , #d91e18 30%,#f89406, #f5e51b);}
+    90% {background-image: linear-gradient(to top right, #d91e18 30%,#f89406, #f5e51b);}
+    95% {background-image: linear-gradient(to top , #d91e18 30%,#f89406, #f5e51b);}
+    100% {background-image: linear-gradient(to top left, #d91e18 30%,#f89406, #f5e51b);}
+  }
+
+  @keyframes pulse {
+    0% {transform: scale(1);}
+    5% {transform: scale(1.05);}
+    10% {transform: scale(1.1);}
+    15% {transform: scale(1.15);}
+    20% {transform: scale(1.2);}
+    25% {transform: scale(1.25);}
+    30% {transform: scale(1.3);}
+    35% {transform: scale(1.35);}
+    40% {transform: scale(1.4);}
+    45% {transform: scale(1.45);}
+    50% {transform: scale(1.5);}
+    55% {transform: scale(1.55);}
+    60% {transform: scale(1.5);}
+    65% {transform: scale(1.45);}
+    70% {transform: scale(1.4);}
+    75% {transform: scale(1.35);}
+    80% {transform: scale(1.3);}
+    85% {transform: scale(1.25);}
+    90% {transform: scale(1.2);}
+    95% {transform: scale(1.15);}
+    100% {transform: scale(1.1);}
+  }
