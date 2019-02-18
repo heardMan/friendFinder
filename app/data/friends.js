@@ -6,7 +6,7 @@ var friends = [
     },
     {
         "name": "Henry",
-        "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFj8fOeiRqbtxbYW2kBHNVC8ZtRBNiLbrCeLYKqhtyYCr0k4UGDA",
+        "photo": "https://img.buzzfeed.com/buzzfeed-static/static/campaign_images/webdr05/2013/4/12/14/26-of-the-most-legendary-celebrity-selfies-of-all-1-13403-1365789751-7_big.jpg",
         "scores": [4,3,2,4,3,1,3,2,2,1]
     },
     {
