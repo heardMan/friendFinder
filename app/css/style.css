@@ -1,7 +1,15 @@
+body{
+    font-family: 'Lato', sans-serif;
+    background-color: #6c7a89;
+}
 #logo {
     max-height: 250px;
     margin: auto;
 }
 #home-title {
     font-family: 'Montserrat Subrayada', sans-serif;
+}
+
+#homeCard{
+    background-image: linear-gradient( #d91e18 , #f5e51b);
 }
